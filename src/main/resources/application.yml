@@ -1,4 +1,3 @@
 spring:
   profiles:
     active: @activatedProperties@
-    include: oauth # oauth profile의 properties 설정들을 포함

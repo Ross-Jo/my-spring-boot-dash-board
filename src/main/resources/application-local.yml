@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include: oauth # oauth profile의 properties 설정들을 포함
   datasource:
     url: jdbc:h2:mem:testdb # h2-console에 접근하기 위해서 필요
   jpa:
