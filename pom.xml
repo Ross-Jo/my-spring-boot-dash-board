@@ -32,6 +32,12 @@
             </properties>
         </profile>
         <profile>
+            <id>real</id>
+            <properties>
+                <activatedProperties>real</activatedProperties>
+            </properties>
+        </profile>
+        <profile>
             <id>test</id>
             <properties>
                 <activatedProperties>test</activatedProperties>
