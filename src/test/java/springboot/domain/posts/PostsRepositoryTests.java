@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,20 +34,25 @@ public class PostsRepositoryTests {
 
         List<Posts> postsList = postsRepository.findAll();
 
-        assertThat(postsList.get(0)).isEqualToComparingFieldByField(mockPost);
+        assertThat(postsList.get(0).getTitle()).isEqualTo("title");
+        assertThat(postsList.get(0).getAuthor()).isEqualTo("author");
+        assertThat(postsList.get(0).getContent()).isEqualTo("content");
     }
 
     @Test
     public void baseTimeEntityRegister() {
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+//      now.truncatedTo(ChronoUnit.SECONDS).format(DateTimeFormatter.ISO_DATE_TIME));
+
         Posts mockPost = Posts.builder().title("title").author("author").content("content").build();
         postsRepository.save(mockPost);
 
         List<Posts> postsList = postsRepository.findAll();
 
         Posts posts = postsList.get(0);
-        assertThat(posts.getCreatedDate()).isAfter(now);
-        assertThat(posts.getModifiedDate()).isAfter(now);
+
+        assertThat(posts.getCreatedDate()).isAfterOrEqualTo(now);
+        assertThat(posts.getModifiedDate()).isAfterOrEqualTo(now);
     }
 
 }
