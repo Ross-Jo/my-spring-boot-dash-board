@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    include: real-db,oauth # oauth profile의 properties 설정들을 포함
+  session:
+    store-type: jdbc
