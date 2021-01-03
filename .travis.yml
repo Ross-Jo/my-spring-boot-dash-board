@@ -10,7 +10,7 @@ cache:
   directories:
     - '$HOME/.m2/'
 
-script: "mvn clean package -Preal -Dspring.config.location=classpath:/application.yml,classpath:/application-real.yml,/home/ec2-user/app/application-oauth.yml,/home/ec2-user/app/application-real-db.yml"
+script: "mvn clean package -Preal -DskipTests"
 
 notifications:
   email:
