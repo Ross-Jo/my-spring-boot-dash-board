@@ -12,6 +12,22 @@ cache:
 
 script: "mvn clean package -Preal -DskipTests"
 
+before_deploy:
+  - zip -r my-spring-boot-dashboard *
+  - mkdir -p deploy
+  - mv my-spring-boot-dashboard.zip deploy/my-spring-boot-dashboard.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: my-spring-boot-dashboard-deploy
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
+
 notifications:
   email:
     recipients:
