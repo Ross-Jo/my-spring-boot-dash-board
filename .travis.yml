@@ -33,7 +33,7 @@ deploy:
     bucket: my-spring-boot-dashboard-build
     key: my-spring-boot-dashboard.zip
     bundle_type: zip
-    application: my-spring-boot-dashboard
+    application: my-spring-boot-dash-board
     deployment_group: my-spring-boot-dash-board-group
     region: ap-northeast-2
     wait-until-deployed: true
